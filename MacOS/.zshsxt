@@ -7,7 +7,7 @@
 # setup aliases for SXTCLI and .env (secrets) file, both REQUIRED.
 # you can change where each file is found here:
 alias sxtcli="java -jar /Applications/SxT/sxtcli-0.0.5.jar" # works for 0.0.5 or higher
-alias .env=". ./.sxtshell/.env"  # change to different dotenv file /folder as needed
+alias .env=". ~/.sxtshell/.env"  # change to different dotenv file /folder as needed
 
 
 
