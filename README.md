@@ -51,14 +51,16 @@ Open a new TERMINAL window (aka zsh), navigate to the folder containing the two 
     ```
 
 5) Test it out!
-  - Open a NEW terminal window
-  - Enter the command `sxtversion`, which should return something like:
+  - Enter the command:
+    ```shell
+    source ~/.zshrc
+    sxtversion
     ```
-    sxtcli version: Version: 0.0.5
-    sxt_shortcuts:  Version: 2.0
-    for more information, see:
-    https://github.com/SxT-Community/SXTCLI_Shell_Functions
-    ```
+    Which should return something like:
+    > sxtcli version: Version: 0.0.5
+    > sxt_shortcuts:  Version: 2.0
+    > for more information, see:
+    >   https://github.com/SxT-Community/SXTCLI_Shell_Functions
   - login to Space and Time with `sxtlogin`
       - If you have not updated the `.env` file and are still running with the test credentials, you WILL be able to login, but will NOT be able to run queries
   - To run a full test (including running queries), make sure the `.env` file has your own credentials, then enter the command `sxttest` and watch it go!
