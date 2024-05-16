@@ -24,6 +24,8 @@ You can clone the repo, or just download the two files.   From there, the instru
 ## MacOS
 Open a new TERMINAL window (aka zsh), navigate to the folder containing the two files above.  Note, both files begin with a period, which makes them 'hidden' by the OS. To confirm you're in the correct folder, type in the terminal `ls -a` and you should see your two files. Once you've confirmed your in the correct folder, enter the commands below.
 
+These steps **must be done in the folder containing the two files above** (typically `.../SXTCLI_Wrapper_Functions/MacOS`).
+
 1) Create a dated backup of config file (in backup folder), then print to terminal when done to verify:
     ```shell
     mkdir ~/.zshrc_bkup
