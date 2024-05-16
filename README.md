@@ -43,17 +43,15 @@ Open a new TERMINAL window (aka zsh), navigate to the folder containing the two 
     ```shell
     echo "source ~/.sxtshell/.zshsxt" >> ~/.zshrc
     tail ~/.zshrc
+    source ~/.zshrc
     ```
  
-4) Add your Space and Time credentials to the `.env` file:
+4) This will open the credential file, so you can add YOUR Space and Time credentials.  Save and close when done:
     ```shell
     open -a TextEdit ~/.sxtshell/.env
     ```
-5) Reload your terminal window: (or just open a new one)
-    ```shell
-    source ~/.zshrc
-    ```  
-6) Test it out!
+    
+5) Test it out!
   - Enter the command:
     ```shell
     sxtversion
