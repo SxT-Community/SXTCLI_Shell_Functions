@@ -24,10 +24,11 @@ You can clone the repo, or just download the two files.   From there, the instru
 ## MacOS
 Open a new TERMINAL window (aka zsh), navigate to the folder containing the two files above.  Note, both files begin with a period, which makes them 'hidden' by the OS. To confirm you're in the correct folder, type in the terminal `ls -a` and you should see your two files. Once you've confirmed your in the correct folder, enter the commands below.
 
-1) Create a dated backup of config file (in backup folder):
+1) Create a dated backup of config file (in backup folder) and print to terminal when done, to verify:
     ```shell
     mkdir ~/.zshrc_bkup
-    cp ~/.zshrc ~/.zshrc_bkup/.zshrc_$(date +"%Y%m%d%H%M%S") 
+    cp ~/.zshrc ~/.zshrc_bkup/.zshrc_$(date +"%Y%m%d%H%M%S")
+    ls -al ~/.zshrc_bkup/
     ```
 
 2) Copy over new functions to a new `.sxtshell` hidden folder:
