@@ -1,0 +1,126 @@
+#############################################
+### Space and Time CLI Shortcut Functions ###
+#############################################
+# For CLI install, see: https://docs.spaceandtime.io/docs/sxtcli
+
+
+# setup aliases for SXTCLI and .env (secrets) file, both REQUIRED.
+# you can change where each file is found here:
+alias sxtcli="java -jar /Applications/SxT/sxtcli-0.0.5.jar" # works for 0.0.5 or higher
+alias .env=". ./.env_sample"  # change to different dotenv file /folder as needed
+
+
+
+#############################################
+## Login shortcuts 
+#############################################
+# Arbitrary login, using environment variables, and return ACCESS_TOKEN
+sxtlogin_as() {
+    ACCESS_TOKEN=$(sxtcli authenticate login --url=$API_URL --userId=$USERID --publicKey=$USER_PUBLIC_KEY --privateKey=$USER_PRIVATE_KEY | awk 'NR==2{ print $2 }' )
+    echo $ACCESS_TOKEN
+    ACCESS_TOKEN_TIME=$(date "+%H:%M:%S")
+}
+# Load environment variables from dotenv file, and call sxtlogin_as 
+sxtlogin() {
+    .env
+    sxtlogin_as
+}
+  
+
+#############################################
+## Unified SQL Execution
+#############################################
+# This actually runs all SQL, accepting a variable number of parameters.
+# See ReadMe.md for full usage notes
+sxtsql_runall() {
+SQLTYPE="${1}"
+if [[ "${2}" == "json" ]]; then
+  tmpSQL="${SQL}"
+  tmpRESOURCEID="${RESOURCEID}"
+  tmpFORMAT="JSON"
+elif [[ "${3}" == "json" ]]; then 
+  tmpSQL="${2}"
+  tmpRESOURCEID="${RESOURCEID}"
+  tmpFORMAT="JSON"
+else
+  [[ -z "${2}" ]] && tmpSQL="${SQL}" || tmpSQL="${2}"
+  [[ -z "${3}" ]] && tmpRESOURCEID="${RESOURCEID}" || tmpRESOURCEID="${3}"
+  [[ -z "${FORMAT}" ]] && FORMAT="TABLE"
+  [[ -z "${4}" ]] && tmpFORMAT="${FORMAT}" || tmpFORMAT="${4}"
+fi 
+LAST_SQL="${tmpSQL}"
+echo " "
+echo "   ---> RUNNING SQL ($SQLTYPE) <---   "
+echo "------------------------------"
+echo $tmpSQL
+echo "------------------------------"
+TIMEFMT_BKUP=$TIMEFMT
+TIMEFMT=$'\nruntime\t%*E'
+if [[ "${SQLTYPE}" == "DQL" ]]; then
+    time sxtcli sql --url=$API_URL --accessToken=$ACCESS_TOKEN --resources=$tmpRESOURCEID --biscuits=$BISCUIT --sqlText=$tmpSQL dql --format=$tmpFORMAT
+elif [[ "${SQLTYPE}" == "DML" ]]; then 
+    time sxtcli sql --url=$API_URL --accessToken=$ACCESS_TOKEN --resources=$tmpRESOURCEID --biscuits=$BISCUIT --sqlText=$tmpSQL dml
+elif [[ "${SQLTYPE}" == "DDL" ]]; then 
+    time sxtcli sql --url=$API_URL --accessToken=$ACCESS_TOKEN --resources=$tmpRESOURCEID --biscuits=$BISCUIT --sqlText=$tmpSQL ddl
+elif [[ "${SQLTYPE}" == "SQL" ]]; then 
+    time sxtcli sql --url=$API_URL --accessToken=$ACCESS_TOKEN --resources=$tmpRESOURCEID --biscuits=$BISCUIT --sqlText=$tmpSQL
+else
+    echo "skipping execution"
+fi
+TIMEFMT=$TIMEFMT_BKUP
+}
+
+
+# Shortcut Aliases
+sxtdql() { sxtsql_runall "DQL" "${1}" "${2}" "${3}" ;}
+sxtdml() { sxtsql_runall "DML" "${1}" "${2}" "${3}" ;}
+sxtddl() { sxtsql_runall "DDL" "${1}" "${2}" "${3}" ;}
+sxtsql() { sxtsql_runall "SQL" "${1}" "${2}" "${3}" ;}
+
+
+
+#############################################
+## Print state to terminal on demand
+#############################################
+# print versions
+sxtversion() {
+  echo "sxtcli version: `sxtcli version`"
+  echo "sxt_shortcuts:  Version: 2.0"
+  echo "for more information, see:"
+  echo "  https://github.com/SxT-Community/SXTCLI_Shell_Functions"
+}
+
+sxtdump() {
+sxtversion
+echo ------------------------------------------
+echo API_URL = $API_URL
+echo ''
+echo --------------- user keys ----------------
+echo USERID = $USERID
+echo USER_PUBLIC_KEY = $USER_PUBLIC_KEY 
+echo USER_PRIVATE_KEY = ${USER_PRIVATE_KEY:0:6}...
+echo ACCESS_TOKEN = ${ACCESS_TOKEN:0:20}...
+echo ACCESS_TOKEN_TIME = $ACCESS_TOKEN_TIME
+echo CURRENT TIME = $(date "+%H:%M:%S")
+echo ''
+echo ------------ resource keys --------------
+echo RESOURCEID = $RESOURCEID
+echo RESOURCE_PUBLIC_KEY = $RESOURCE_PUBLIC_KEY
+echo RESOURCE_PRIVATE_KEY = ${RESOURCE_PRIVATE_KEY:0:6}...
+echo BISCUIT = ${BISCUIT:0:20}...
+echo FORMAT = ${FORMAT}
+echo '' 
+echo ---------- LAST_SQL submitted ----------
+echo $LAST_SQL
+echo ''
+}
+
+
+# Run a Sample Query (for testing)
+sxttest() {
+    echo "Attempting to login and retrieve an ACCESS_TOKEN:"
+    sxtlogin
+    echo " "
+    sxtsql "SELECT count(*) as Blocks_Yesterday FROM ETHEREUM.BLOCKS WHERE Time_Stamp between current_date-1 and current_date"
+    sxtdump
+}
