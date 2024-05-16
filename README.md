@@ -51,7 +51,7 @@ Open a new TERMINAL window (aka zsh), navigate to the folder containing the two 
     open -a TextEdit ~/.sxtshell/.env
     ```
     
-4) Test it out!
+5) Test it out!
   - Test the install of these tools by entering the command:
     ```shell
     sxtversion
@@ -84,6 +84,7 @@ This is a wrapper around the existing SXTCLI, so all functions from the CLI are 
 - `sxtcli`
     - A simple alias for your SXTCLI jar file.  This is the same as the 'creating an alias' step in the official CLI documentation: https://docs.spaceandtime.io/docs/sxtcli  (i.e., installing this wrapper means not having to perform that step).
 
+&nbsp;
 - `sxtlogin` 
     - Description: Loads the `.env` file and logs into the Space and Time network using those USER envars.  The `.env` file is reloaded every time, thus overwriting any changes made to the envars below since it's last run.  
     - Parameters: None.   
