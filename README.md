@@ -24,23 +24,25 @@ You can clone the repo, or just download the two files.   From there, the instru
 ## MacOS
 Open a new TERMINAL window (aka zsh), navigate to the folder containing the two files above.  Note, both files begin with a period, which makes them 'hidden' by the OS. To confirm you're in the correct folder, type in the terminal `ls -a` and you should see your two files. Once you've confirmed your in the correct folder, enter the commands below.
 
-1) Create a dated backup of config file (in backup folder) and print to terminal when done, to verify:
+1) Create a dated backup of config file (in backup folder), then print to terminal when done to verify:
     ```shell
     mkdir ~/.zshrc_bkup
     cp ~/.zshrc ~/.zshrc_bkup/.zshrc_$(date +"%Y%m%d%H%M%S")
     ls -al ~/.zshrc_bkup/
     ```
 
-2) Copy over new functions to a new `.sxtshell` hidden folder:
+2) Copy over new functions to a new `.sxtshell` hidden folder, then print to terminal when done to verify:
     ```shell
     mkdir ~/.sxtshell
     cp .env_sample ~/.sxtshell/.env
     cp .zshsxt ~/.sxtshell/.zshsxt
+    ls -al ~/.sxtshell
     ```
 
-3) Add a line to your config file (`.zshrc`) to load the new functions from now on:
+3) Add a line to your config file (`.zshrc`) to load the new functions from now on, then print to terminal when done to verify:
     ```shell
     echo "source ~/.sxtshell/.zshsxt" >> .zshrc
+    tail ~/.zshrc
     ```
  
 4) Add your Space and Time credentials to the `.env` file:
@@ -57,6 +59,9 @@ Open a new TERMINAL window (aka zsh), navigate to the folder containing the two 
     for more information, see:
     https://github.com/SxT-Community/SXTCLI_Shell_Functions
     ```
+  - login to Space and Time with `sxtlogin`
+      - If you have not updated the `.env` file and are still running with the test credentials, you WILL be able to login, but will NOT be able to run queries
+  - To run a full test (including running queries), make sure the `.env` file has your own credentials, then enter the command `sxttest` and watch it go!
 
 
 ## Other Operating Systems
