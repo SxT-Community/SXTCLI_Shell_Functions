@@ -57,10 +57,12 @@ Open a new TERMINAL window (aka zsh), navigate to the folder containing the two 
     sxtversion
     ```
     Which should return something like:
+    
     > sxtcli version: Version: 0.0.5
     > sxt_shortcuts:  Version: 2.0
     > for more information, see:
     >   https://github.com/SxT-Community/SXTCLI_Shell_Functions
+    > 
 
     If that ran successfully, then the install was successful!
 
