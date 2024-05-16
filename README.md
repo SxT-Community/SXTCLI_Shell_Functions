@@ -41,7 +41,7 @@ Open a new TERMINAL window (aka zsh), navigate to the folder containing the two 
 
 3) Add a line to your config file (`.zshrc`) to load the new functions from now on, then print to terminal when done to verify:
     ```shell
-    echo "source ~/.sxtshell/.zshsxt" >> .zshrc
+    echo "source ~/.sxtshell/.zshsxt" >> ~/.zshrc
     tail ~/.zshrc
     ```
  
