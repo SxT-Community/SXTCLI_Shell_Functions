@@ -49,11 +49,13 @@ Open a new TERMINAL window (aka zsh), navigate to the folder containing the two 
     ```shell
     open -a TextEdit ~/.sxtshell/.env
     ```
-
-5) Test it out!
-  - Enter the command:
+5) Reload your terminal window: (or just open a new one)
     ```shell
     source ~/.zshrc
+    ```  
+6) Test it out!
+  - Enter the command:
+    ```shell
     sxtversion
     ```
     Which should return something like:
@@ -61,9 +63,15 @@ Open a new TERMINAL window (aka zsh), navigate to the folder containing the two 
     > sxt_shortcuts:  Version: 2.0
     > for more information, see:
     >   https://github.com/SxT-Community/SXTCLI_Shell_Functions
-  - login to Space and Time with `sxtlogin`
-      - If you have not updated the `.env` file and are still running with the test credentials, you WILL be able to login, but will NOT be able to run queries
-  - To run a full test (including running queries), make sure the `.env` file has your own credentials, then enter the command `sxttest` and watch it go!
+  - Next, login to Space and Time with
+    ```shell
+    sxtlogin
+    ```
+  - To run a full test (including running queries), make sure the `.env` file has your own credentials and enter:
+    ```shell
+    sxttest
+    ```
+    Note, it will fail on running queries if you've not added your credentials to the `.env` file.
 
 
 ## Other Operating Systems
