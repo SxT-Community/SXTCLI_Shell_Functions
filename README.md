@@ -51,8 +51,8 @@ Open a new TERMINAL window (aka zsh), navigate to the folder containing the two 
     open -a TextEdit ~/.sxtshell/.env
     ```
     
-5) Test it out!
-  - Enter the command:
+4) Test it out!
+  - Test the install of these tools by entering the command:
     ```shell
     sxtversion
     ```
@@ -61,11 +61,10 @@ Open a new TERMINAL window (aka zsh), navigate to the folder containing the two 
     > sxt_shortcuts:  Version: 2.0
     > for more information, see:
     >   https://github.com/SxT-Community/SXTCLI_Shell_Functions
-  - Next, login to Space and Time with
-    ```shell
-    sxtlogin
-    ```
-  - To run a full test (including running queries), make sure the `.env` file has your own credentials and enter:
+
+    If that ran successfully, then the install was successful!
+
+  - To do an end-to-end test (including running queries), make sure the `.env` file has your own credentials and enter:
     ```shell
     sxttest
     ```
