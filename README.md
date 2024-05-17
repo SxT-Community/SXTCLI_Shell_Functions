@@ -3,7 +3,7 @@ This is a collection of shell wrapper functions for the Space and Time CLI.  It 
 
 &nbsp;
 # Requirements
-This is a wrapper around the existing SXTCLI, thus assumes you have the SXTCLI installed and working, version v0.0.5 or higher.  Also requires some light knowledge of the shell / zsh / commandline interface works. 
+This is a wrapper around the existing SXTCLI, thus assumes you have the SXTCLI installed and working, version v0.0.5 or higher.  Also requires some light knowledge of  the shell / zsh / commandline interface. 
 
 For more information on installing the CLI, see the official CLI documentation:
 https://docs.spaceandtime.io/docs/sxtcli
